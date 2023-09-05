@@ -17,15 +17,15 @@ local_repository(
 # To update TensorFlow to a new revision.
 # 1. Update the 'git_commit' args below to include the new git hash.
 # 2. Get the sha256 hash of the archive with a command such as...
-#    curl -L https://github.com/tensorflow/tensorflow/archive/<git hash>.tar.gz | sha256sum
+#    curl -L https://github.com/Hyun-ho-Yeo/tensorflow/archive/<git hash>.tar.gz | sha256sum
 #    and update the 'sha256' arg with the result.
 # 3. Request the new archive to be mirrored on mirror.bazel.build for more
 #    reliable downloads.
 load("//tensorflow_serving:repo.bzl", "tensorflow_http_archive")
 tensorflow_http_archive(
     name = "org_tensorflow",
-    sha256 = "a8c44e11bd54e6949497bf25db9520e046d1d19b98d096b2482c4b15e3246f8f",
-    git_commit = "40b1af6bfe83041d62eb866fb80d5e397917b958",
+    sha256 = "3425f1a26f7d96c1796b83eff6129c0abf59b027fca881a1ada3c5de9f3ef959",
+    git_commit = "86aae4fd7a4a931798143965664f4365823e791d",
 )
 
 # Import all of TensorFlow Serving's external dependencies.
