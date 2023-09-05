@@ -14,7 +14,7 @@
 FROM ubuntu:20.04 as base_build
 
 ARG TF_SERVING_VERSION_GIT_BRANCH=master
-ARG TF_SERVING_VERSION_GIT_COMMIT=HEAD
+ARG TF_SERVING_VERSION_GIT_COMMIT=65f677cbd7ca448ccaace23f6ea5b9c16b7a448b
 ARG DEBIAN_FRONTEND=noninteractive
 
 LABEL maintainer=gvasudevan@google.com
@@ -91,7 +91,7 @@ RUN mkdir /bazel && \
 
 # Download TF Serving sources (optionally at specific commit).
 WORKDIR /tensorflow-serving
-RUN curl -sSL --retry 5 https://github.com/tensorflow/serving/tarball/${TF_SERVING_VERSION_GIT_COMMIT} | tar --strip-components=1 -xzf -
+RUN curl -sSL --retry 5 https://github.com/Hyun-ho-Yeo/serving/tarball/${TF_SERVING_VERSION_GIT_COMMIT} | tar --strip-components=1 -xzf -
 
 FROM base_build as binary_build
 # Build, and install TensorFlow Serving
