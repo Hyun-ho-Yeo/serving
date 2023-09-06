@@ -1,0 +1,13 @@
+substitutions:
+  _DOCKERFILE: 'tensorflow_serving/tools/docker/Dockerfile.devel'
+  _IMAGE: gcr.io/focal-elf-631/tfserving_hyunho
+  _VER: latest-devel-base
+steps:
+- name: 'gcr.io/kaniko-project/executor:v1.6.0'
+  args:
+  - --destination=${_IMAGE}:${_VER}
+  - --dockerfile=${_DOCKERFILE}
+  - --use-new-run
+  timeout: '7200s'
+options:
+  machineType: 'N1_HIGHCPU_32'
