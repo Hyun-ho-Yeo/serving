@@ -383,8 +383,8 @@ Status Server::BuildAndStart(const Options& server_options) {
     LOG(INFO) << "Profiler service is enabled";
   }
   builder.SetMaxMessageSize(tensorflow::kint32max);
-  builder.SetSyncServerOption(ServerBuilder::SyncServerOption::NUM_CQS, 48);
-  builder.SetSyncServerOption(ServerBuilder::SyncServerOption::MAX_POLLERS, 96);
+  builder.SetSyncServerOption(::grpc::ServerBuilder::SyncServerOption::NUM_CQS, 48);
+  builder.SetSyncServerOption(::grpc::ServerBuilder::SyncServerOption::MAX_POLLERS, 96);
   const std::vector<GrpcChannelArgument> channel_arguments =
       parseGrpcChannelArgs(server_options.grpc_channel_arguments);
   for (const GrpcChannelArgument& channel_argument : channel_arguments) {
