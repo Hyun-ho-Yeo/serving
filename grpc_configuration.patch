@@ -1,5 +1,5 @@
 diff --git a/tensorflow_serving/model_servers/server.cc b/tensorflow_serving/model_servers/server.cc
-index b15cd4ca..055e55bd 100644
+index b15cd4ca..f26a133e 100644
 --- a/tensorflow_serving/model_servers/server.cc
 +++ b/tensorflow_serving/model_servers/server.cc
 @@ -383,6 +383,8 @@ Status Server::BuildAndStart(const Options& server_options) {
@@ -11,6 +11,19 @@ index b15cd4ca..055e55bd 100644
    const std::vector<GrpcChannelArgument> channel_arguments =
        parseGrpcChannelArgs(server_options.grpc_channel_arguments);
    for (const GrpcChannelArgument& channel_argument : channel_arguments) {
+@@ -397,9 +399,9 @@ Status Server::BuildAndStart(const Options& server_options) {
+     }
+   }
+ 
+-  ::grpc::ResourceQuota res_quota;
+-  res_quota.SetMaxThreads(server_options.grpc_max_threads);
+-  builder.SetResourceQuota(res_quota);
++  // ::grpc::ResourceQuota res_quota;
++  // res_quota.SetMaxThreads(server_options.grpc_max_threads);
++  // builder.SetResourceQuota(res_quota);
+ 
+   grpc_server_ = builder.BuildAndStart();
+   if (grpc_server_ == nullptr) {
 diff --git a/tensorflow_serving/model_servers/server.h b/tensorflow_serving/model_servers/server.h
 index 03467d6a..9460a402 100644
 --- a/tensorflow_serving/model_servers/server.h

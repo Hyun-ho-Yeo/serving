@@ -399,9 +399,9 @@ Status Server::BuildAndStart(const Options& server_options) {
     }
   }
 
-  ::grpc::ResourceQuota res_quota;
-  res_quota.SetMaxThreads(server_options.grpc_max_threads);
-  builder.SetResourceQuota(res_quota);
+  // ::grpc::ResourceQuota res_quota;
+  // res_quota.SetMaxThreads(server_options.grpc_max_threads);
+  // builder.SetResourceQuota(res_quota);
 
   grpc_server_ = builder.BuildAndStart();
   if (grpc_server_ == nullptr) {
