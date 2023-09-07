@@ -1,0 +1,26 @@
+diff --git a/tensorflow_serving/model_servers/server.cc b/tensorflow_serving/model_servers/server.cc
+index b15cd4ca..055e55bd 100644
+--- a/tensorflow_serving/model_servers/server.cc
++++ b/tensorflow_serving/model_servers/server.cc
+@@ -383,6 +383,8 @@ Status Server::BuildAndStart(const Options& server_options) {
+     LOG(INFO) << "Profiler service is enabled";
+   }
+   builder.SetMaxMessageSize(tensorflow::kint32max);
++  builder.SetSyncServerOption(::grpc::ServerBuilder::SyncServerOption::NUM_CQS, 48);
++  builder.SetSyncServerOption(::grpc::ServerBuilder::SyncServerOption::MAX_POLLERS, 96);
+   const std::vector<GrpcChannelArgument> channel_arguments =
+       parseGrpcChannelArgs(server_options.grpc_channel_arguments);
+   for (const GrpcChannelArgument& channel_argument : channel_arguments) {
+diff --git a/tensorflow_serving/model_servers/server.h b/tensorflow_serving/model_servers/server.h
+index 03467d6a..9460a402 100644
+--- a/tensorflow_serving/model_servers/server.h
++++ b/tensorflow_serving/model_servers/server.h
+@@ -100,7 +100,7 @@ class Server {
+     tensorflow::int32 num_tflite_interpreters_per_pool = 1;
+     tensorflow::string thread_pool_factory_config_file;
+     bool enable_signature_method_name_check = false;
+-    bool enable_profiler = true;
++    bool enable_profiler = false;
+ 
+     Options();
+   };
